@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require 'net/http'
+require 'net/https'
 
 module AnonTalk
   class Application < Sinatra::Base
@@ -27,14 +27,18 @@ module AnonTalk
     @@slack_uri = URI.parse('https://hooks.slack.com/services/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')
 
     post '/' do
-      Net::HTTP.post_form(@@slack_uri, {
+      req = Net::HTTP::Post.new(@@slack_uri.request_uri)
+      req.set_form_data({
         "payload" => {
-          "channel" => "@max",
+          "channel" => "@zach",
           "username" => "AnonTalk",
           "text" => @params["message"],
           "icon_emoji" => ":ghost:"
         }.to_json
       })
+      http = Net::HTTP.new(@@slack_uri.host, @@slack_uri.port)
+      http.use_ssl = true
+      http.request(req)
       [200, {}, 'Message Posted!']
     end
   end
