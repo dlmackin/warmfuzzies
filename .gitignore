@@ -1,0 +1,16 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+css/
+.sass-cache/
+*.css
+*.css.map
+/db/*
+!/db/migrations
+/node_modules/
