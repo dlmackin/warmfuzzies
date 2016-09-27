@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 group :development, :test do
   gem 'bundler', '~> 1.9'
+  gem 'rerun'
 end
 
 gem 'json'

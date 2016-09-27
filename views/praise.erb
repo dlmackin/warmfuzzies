@@ -1,7 +1,12 @@
 
-<div style="display:table;margin:10px auto;">
-<form action='/api/praise' method=post>
-  <textarea name="message" rows="24" cols="80"></textarea>
-  <button style="display:block" type="submit" name="button">Submit</button>
-</form>
+<div>
+  <form action='/api/praise' method=post>
+    <div class="form-group">
+      <textarea name="message" class="form-control" rows="12"></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" name="button">Submit</button>
+    </div>
+  </form>
 </div>

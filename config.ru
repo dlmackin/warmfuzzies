@@ -18,7 +18,7 @@ module AnonTalk
       req = Net::HTTP::Post.new(@@slack_uri.request_uri)
       req.set_form_data({
         "token" => settings.slack_token,
-        "channel" => "#dianatest",
+        "channel" => "#diana-sandbox",
         "username" => "WarmFuzzies",
         "text" => @params["message"],
         "icon_emoji" => ":tada:"

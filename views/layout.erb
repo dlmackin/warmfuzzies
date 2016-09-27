@@ -1,8 +1,29 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-  <title>Noom Warm Fuzzies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+
+    <style>
+      body {
+        margin: 100px;
+      }
+    </style>
+
+    <title>Noom Warm Fuzzies</title>
   <head>
-  <body style="width:100%;height:100%;overflow:hide;">
-    <%= yield %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
   </body>
 </html>
