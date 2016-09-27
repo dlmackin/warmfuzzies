@@ -18,16 +18,20 @@ module AnonTalk
       req = Net::HTTP::Post.new(@@slack_uri.request_uri)
       req.set_form_data({
         "token" => settings.slack_token,
-        "channel" => "#fuzzies-sandbox",
+        "channel" => "#dianatest",
         "username" => "WarmFuzzies",
         "text" => @params["message"],
         "icon_emoji" => ":tada:"
       })
       http = Net::HTTP.new(@@slack_uri.host, @@slack_uri.port)
       http.use_ssl = true
-      resp = http.request(req)
+      response = JSON.parse(http.request(req).body)
 
-      [200, {}, resp.body]
+      if response["ok"] then
+        erb :post_submit, :locals => { :slack_response => response }
+      else
+        erb :post_submit_error, :locals => { :slack_response => response }
+      end
     end
   end
 end
