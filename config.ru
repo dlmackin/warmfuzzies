@@ -4,6 +4,10 @@ require 'net/https'
 
 module AnonTalk
   class Application < Sinatra::Base
+    configure do
+      set :slack_token => ENV["SLACK_TOKEN"]
+    end
+
     get '/:user' do
 
       erb <<-EOF
@@ -25,22 +29,22 @@ module AnonTalk
       EOF
     end
 
-    @@slack_uri = URI.parse('https://hooks.slack.com/services/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')
+    @@slack_uri = URI.parse('https://slack.com/api/chat.postMessage')
 
     post '/' do
       req = Net::HTTP::Post.new(@@slack_uri.request_uri)
       req.set_form_data({
-        "payload" => {
-          "channel" => @params["channel"].sub('!', '#'),
-          "username" => "AnonBot",
+          "token" => settings.slack_token,
+          "channel" => "#diana-sandbox",
+          "username" => "WarmFuzzies",
           "text" => @params["message"],
-          "icon_emoji" => ":ghost:"
-        }.to_json
+          "icon_emoji" => ":tada:"
       })
       http = Net::HTTP.new(@@slack_uri.host, @@slack_uri.port)
       http.use_ssl = true
-      http.request(req)
-      [200, {}, "Message Posted to #{@params["channel"].sub('!', '#')}!"]
+      resp = http.request(req)
+
+      [200, {}, resp.body]
     end
   end
 end
